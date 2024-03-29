@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from lxml import html
 import requests
+import uvicorn
 
 app = FastAPI()
 TECHCRUNCH_URL = "https://techcrunch.com/"
@@ -26,8 +27,8 @@ async def getLatestArticles():
      
         return newsDictionary
     else:
-        return {"error" : "Failed to fetch data from Techcrunch"}
+        return {"error" : "Failed to fetch data from Techcrunch!"}
 
-
-    
-    
+ 
+if __name__ == "__main__":
+    uvicorn.run(app, host = "0.0.0.0", port = 8000)
