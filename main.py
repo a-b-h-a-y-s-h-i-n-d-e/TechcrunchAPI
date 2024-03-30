@@ -6,10 +6,6 @@ import uvicorn
 app = FastAPI()
 TECHCRUNCH_URL = "https://techcrunch.com/"
 
-
-
-
-
 @app.get('/')
 async def getLatestArticles():
     response = requests.get(TECHCRUNCH_URL)
@@ -29,6 +25,6 @@ async def getLatestArticles():
     else:
         return {"error" : "Failed to fetch data from Techcrunch!"}
 
- 
 if __name__ == "__main__":
     uvicorn.run(app, host = "0.0.0.0", port = 8000)
+
