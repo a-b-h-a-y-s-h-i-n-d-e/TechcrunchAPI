@@ -12,7 +12,7 @@ This is a FastAPI application that scrapes the latest articles from TechCrunch.
 ```
 import requests
 
-response = requests.get("https://techcrunch-api-abhays-projects-bdb1b6d4.vercel.app/")
+response = requests.get("https://techcrunch-api.vercel.app/")
 print(response.json())
 
 ```
