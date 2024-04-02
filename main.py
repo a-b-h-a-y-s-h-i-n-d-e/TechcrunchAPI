@@ -34,13 +34,14 @@ async def getLatestArticles():
     if response.status_code == 200:    
 
         page = html.fromstring(response.content)
-        divContent = [element.text for element in page.xpath("//a[@class='post-block__title__link']")]
+        newsDictionary = {}
+        for element in page.xpath("//a[@class='post-block__title__link']"):
+            title = element.text.strip().replace('\n', '').replace('\t', '')
+            url = element.get('href')
+            if title:
+                newsDictionary[title] = url
 
-        newsDictionary = {i + 1: text for i, text in enumerate(divContent)}
-        # removing \t\n
-        newsDictionary = {key: value.strip() for key, value in newsDictionary.items()}
-        # removing empty key-value like this ""
-        newsDictionary = {key: value for key, value in newsDictionary.items() if value.strip() != ""}
+
      
         return newsDictionary
     else:
