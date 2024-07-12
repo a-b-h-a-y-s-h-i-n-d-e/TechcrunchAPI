@@ -35,8 +35,9 @@ async def getLatestArticles():
 
         page = html.fromstring(response.content)
         newsDictionary = {}
-        for element in page.xpath("//a[@class='post-block__title__link']"):
+        for element in page.xpath("//h2[@class='has-link-color wp-block-post-title has-h-5-font-size wp-elements-565fa7bab0152bfdca0217543865c205']/a"):
             title = element.text.strip().replace('\n', '').replace('\t', '')
+            print("title ->", title)
             url = element.get('href')
             if title:
                 newsDictionary[title] = url
